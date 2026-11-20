@@ -23,5 +23,7 @@ kubectl get deployments,pods,services
 Use a connected cluster and open the frontend service's external IP.
 Images use Docker Hub account 12moshikamj. Sign in with `docker login` before pushing.
 
+The small GKE lab node uses system monitoring, with Managed Prometheus and the unused Filestore driver disabled.
+
 Node 24 and Next.js 16.4.6 replace the older guide versions. The frontend uses React 19 and a production build served by Nginx.
 This lab returns the guide's backend message. It does not save timesheet entries or provide sign in or HTTPS.
