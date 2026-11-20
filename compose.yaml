@@ -1,0 +1,14 @@
+name: it360-timesheet
+services:
+  backend:
+    build: ./backend
+    image: it360-timesheet-backend:latest
+    ports:
+      - "127.0.0.1:5000:5000"
+  frontend:
+    build: ./frontend
+    image: it360-timesheet-frontend:latest
+    ports:
+      - "127.0.0.1:3000:3000"
+    depends_on:
+      - backend
