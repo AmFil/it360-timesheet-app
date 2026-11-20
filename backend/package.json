@@ -4,11 +4,8 @@
   "description": "Simple timesheet API for IT 360",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "test": "node --test"
+    "start": "node index.js"
   },
-  "keywords": [],
-  "author": "",
   "type": "commonjs",
   "dependencies": {
     "body-parser": "^2.4.0",
