@@ -1,11 +1,12 @@
-FROM node:24-bookworm-slim
+FROM node:24-alpine AS build
 WORKDIR /app
-COPY package*.json ./
+COPY package.json package-lock.json ./
 RUN npm ci
-COPY --chown=node:node . .
-RUN mkdir -p node_modules/.cache && chown node:node node_modules/.cache
-ENV HOST=0.0.0.0
-ENV BROWSER=none
-USER node
+COPY . .
+RUN npm run build
+
+FROM nginx:alpine
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=build /app/build /usr/share/nginx/html
 EXPOSE 3000
-CMD ["npm", "start"]
+CMD ["nginx", "-g", "daemon off;"]

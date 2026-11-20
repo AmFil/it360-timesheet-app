@@ -1,14 +1,12 @@
 name: it360-timesheet
 services:
-  backend:
+  backend-service:
     build: ./backend
-    image: it360-timesheet-backend:latest
-    ports:
-      - "127.0.0.1:5000:5000"
+    image: 12moshikamj/timesheet-backend:latest
   frontend:
     build: ./frontend
-    image: it360-timesheet-frontend:latest
+    image: 12moshikamj/timesheet-frontend:latest
     ports:
       - "127.0.0.1:3000:3000"
     depends_on:
-      - backend
+      - backend-service

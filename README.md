@@ -1,17 +1,27 @@
 # Timesheet app
 
-This app lets you enter an employee name and hours worked, then view the saved timesheets.
+Week 4 Kubernetes lab. The React frontend calls a Next.js backend through Nginx.
+The backend stays inside the cluster. The frontend has a public service.
 
-## Run with Docker
-
-From the project folder run
+## Run locally
 
 ```bash
 docker compose up --build
 ```
 
-Open http://localhost:3000. The backend uses port 5000.
+Open http://localhost:3000. Press Ctrl+C to stop, then run `docker compose down`.
 
-Press Ctrl+C to stop. Entries clear when the backend restarts.
+## Deploy to Kubernetes
 
-The containers use Node 24.
+```bash
+docker compose build
+docker compose push
+kubectl apply -f k8s/
+kubectl get deployments,pods,services
+```
+
+Use a connected cluster and open the frontend service's external IP.
+Images use Docker Hub account 12moshikamj. Sign in with `docker login` before pushing.
+
+Node 24 and Next.js 16.4.6 replace the older guide versions. The frontend uses React 19 and a production build served by Nginx.
+This lab returns the guide's backend message. It does not save timesheet entries or provide sign in or HTTPS.

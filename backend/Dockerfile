@@ -1,8 +1,16 @@
-FROM node:24-bookworm-slim
+FROM node:24-alpine AS build
 WORKDIR /app
-COPY package*.json ./
-RUN npm ci --omit=dev
-COPY index.js ./
+COPY package.json package-lock.json ./
+RUN npm ci
+COPY . .
+ENV NEXT_TELEMETRY_DISABLED=1
+RUN npm run build
+
+FROM node:24-alpine
+WORKDIR /app
+ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
+COPY --from=build --chown=node:node /app ./
 USER node
-EXPOSE 5000
-CMD ["node", "index.js"]
+EXPOSE 3000
+CMD ["npm", "start"]
