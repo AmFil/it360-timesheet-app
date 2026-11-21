@@ -1,6 +1,7 @@
 # Timesheet app
 
 Week 4 Kubernetes lab. The React frontend calls a Next.js backend through Nginx.
+
 The backend stays inside the cluster. The frontend has a public service.
 
 ## Run locally

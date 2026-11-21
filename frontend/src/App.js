@@ -7,6 +7,7 @@ function App() {
     fetch("/api/timesheet")
       .then((res) => {
         if (!res.ok) throw new Error("Backend request failed");
+
         return res.json();
       })
       .then((data) => setMessage(data.message))
